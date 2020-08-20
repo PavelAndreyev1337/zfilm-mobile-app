@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import { Container, Content } from 'native-base'
-import SearchForm from './components/SearchForm'
-import Header from './components/Header'
-import Poster from './components/Poster'
+import { Container } from 'native-base'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
+import Header from './components/Header'
+import Films from './screens/Films'
 
 export default function App() {
   const [isReady, setIsReady] = useState(false)
@@ -21,12 +20,7 @@ export default function App() {
   return (
     <Container>
       <Header/>
-      <SearchForm/>
-      <Content>
-          <Poster/>
-          <Poster/>
-          <Poster/>        
-      </Content>
+      <Films/>
     </Container>
   );
 }
