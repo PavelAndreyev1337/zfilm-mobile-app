@@ -1,6 +1,6 @@
 import React from 'react'
-import {StyleSheet} from "react-native"
-import {Input, Container,Content, Form, Item, Button,Icon} from 'native-base'
+import { StyleSheet } from "react-native"
+import { Input, Container, Content, Form, Item, Button, Icon } from 'native-base'
 
 const SearchForm = () => {
     return (
@@ -21,7 +21,7 @@ const SearchForm = () => {
 
 const styles = StyleSheet.create({
     marginItem: {
-        margin:10
+        margin: 10
     }
 })
 
