@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Left, Button, Icon, Body } from 'native-base'
+import { Header, Left, Button, Icon, Body, Title, Right } from 'native-base'
 
 const AppHeader = () => {
     return (
@@ -10,8 +10,9 @@ const AppHeader = () => {
                 </Button>
             </Left>
             <Body>
-
+                <Title>ZFilm</Title>
             </Body>
+            <Right/>
         </Header>
     )
 }

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Image, StyleSheet, View } from 'react-native'
-import { Card, CardItem, Left, Icon, Body, Right, Badge, H1, H3 } from 'native-base'
+import { Card, CardItem, Icon, Body, Badge, H1, H3 } from 'native-base'
 
 const Poster = () => {
     return (
-        <Card style={styles.cardMargin}>
+        <Card style={{marginTop: 30}}>
             <CardItem style={styles.cardItemSize} cardBody>
                 <Image resizeMode="contain" style={styles.resizableImage} source={{ uri: 'https://img-24x7.com/uploads/ff/m/635772.jpg' }} />
                     <View style={{ flex: 1, height:styles.cardItemSize.height, alignSelf:'flex-start', flexDirection:'row', justifyContent:'space-between'}}>
@@ -45,9 +45,6 @@ const styles = StyleSheet.create({
     whiteBadge: {
         backgroundColor:'white',
         margin: 5
-    },
-    cardMargin: {
-        marginTop: 30,
     },
     cardItemSize: {
         height: 600
