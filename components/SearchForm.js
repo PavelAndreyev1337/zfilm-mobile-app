@@ -1,23 +1,21 @@
 import React from 'react'
 import { StyleSheet } from "react-native"
-import { Input, Container, Content, Form, Item, Button, Icon } from 'native-base'
+import { Input, Form, Item, Icon } from 'native-base'
 
 const SearchForm = () => {
     return (
         <Form>
             <Item style={styles.marginItem}>
-                <Input placeholder="Search..." />
+                <Icon name="ios-search" />
+                <Input placeholder="Поиск фильмов и сериалов" />
             </Item>
-            <Button style={styles.marginItem} block primary>
-                <Icon name="search"></Icon>
-            </Button>
         </Form>
     )
 }
 
 const styles = StyleSheet.create({
     marginItem: {
-        margin: 10
+        margin: 5
     }
 })
 
