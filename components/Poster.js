@@ -15,7 +15,7 @@ const Poster = ({name}) => {
                                 <H3 style={{color:'#de5d62', margin: 5, fontWeight: 'bold'}}>{name.voice}</H3>
                             </Badge>
                             <View>
-                                { kp !== '' &&
+                                { imdb !== '' &&
                                     <Badge style={styles.whiteBadge}>
                                         <Icon name="star">
                                             <H3>{name.imdb}</H3>

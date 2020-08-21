@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import SearchForm from '../components/SearchForm'
 import Poster from '../components/Poster'
-import { Container, Content, Spinner, Toast } from 'native-base'
+import { Container, Content, Spinner } from 'native-base'
 import Scraper from '../scraper'
-import $ from 'cheerio'
 
 
 const Films = () => {
@@ -11,17 +10,16 @@ const Films = () => {
     const scraper = new Scraper();
 
     useEffect(() => {
-            async function fetchData(){
-                await scraper.scrapeMainPage()
-                setData(scraper.data)
-                console.log(data)
-            }
-            fetchData()
-    })
+        async function fetchData(){
+            await scraper.scrapePage()
+            setData(scraper.data)
+        }
+        fetchData()
+    },[])
 
     return (
         <Container>
-            <SearchForm />
+            <SearchForm onSubmit = {setData}/>
             {data.length > 0 ?
                 <Content>
                     {data.map((film, index) => (<Poster name={film} key={index}/>))}

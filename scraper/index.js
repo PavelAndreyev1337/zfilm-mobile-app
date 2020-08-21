@@ -10,12 +10,14 @@ class Scraper {
         this.data = [] // {url, imgUrl, voice, kp, imdb, year, title, description}
     }
 
-    async scrapeMainPage() {
-        let { data } = await axios.get(this.baseUrl, { headers: { 'User-Agent': 'Mozilla/5.0' } })
+    async scrapePage(relativeUrl=null) {
+        let url = relativeUrl ? this.baseUrl+relativeUrl : this.baseUrl
+        let { data } = await axios.get(url, { headers: { 'User-Agent': 'Mozilla/5.0' } })
         $('ul.content-video > li', data).each((i, elem) => {
+            var imgUrl = $('div.poster-main > a > img', elem).attr('src')
             this.data.push({
                 url: this.baseUrl + $('div.poster-main > a', elem).attr('href'),
-                imgUrl: $('div.poster-main > a > img', elem).attr('src'),
+                imgUrl: imgUrl.startsWith("http") ? imgUrl : this.baseUrl+imgUrl,
                 voice: $('div.poster-main > em > span', elem).text(),
                 kp: $('div.poster-main > span.zf_kp_s', elem).text(),
                 imdb: $('div.poster-main > span.zf_imdb_s', elem).text(),
