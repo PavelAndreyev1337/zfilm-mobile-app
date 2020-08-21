@@ -1,26 +1,27 @@
-// const axios = require('axios')
-// const $ = require('cheerio')
-import axios from 'axios'
-import $ from 'cheerio'
+//import axios from 'axios'
+//import $ from 'cheerio'
+const axios = require('axios')
+const $ = require('cheerio')
+global.Buffer = global.Buffer || require('buffer').Buffer
 
 class Scraper {
-    constructor(baseUrl='https://zfilm-hd.net/'){
-        this.baseUrl = baseUrl;
-        this.data=[] // {url, imgUrl, voice, kp, imdb, year, title, description}
+    constructor(baseUrl = 'https://zfilm-hd.net') {
+        this.baseUrl = baseUrl
+        this.data = [] // {url, imgUrl, voice, kp, imdb, year, title, description}
     }
 
-    async scrapeMainPage(){
-        let {data} = await axios.get(this.baseUrl);
-        $('ul.content-video > li',data).each((i,elem)=>{         
+    async scrapeMainPage() {
+        let { data } = await axios.get(this.baseUrl, { headers: { 'User-Agent': 'Mozilla/5.0' } })
+        $('ul.content-video > li', data).each((i, elem) => {
             this.data.push({
-                url: this.baseUrl+$('div.poster-main > a',elem).attr('href'),
+                url: this.baseUrl + $('div.poster-main > a', elem).attr('href'),
                 imgUrl: $('div.poster-main > a > img', elem).attr('src'),
-                voice: $('div.poster-main > em > span',elem).text(),
-                kp:  $('div.poster-main > span.zf_kp_s',elem).text(),
-                imdb:  $('div.poster-main > span.zf_imdb_s',elem).text(),
-                year:  $('div.poster-main > strong > span',elem).text(),
-                title: $('div.info-poster > a > h3',elem).text(),
-                description: $('div.info-poster > p',elem).text()
+                voice: $('div.poster-main > em > span', elem).text(),
+                kp: $('div.poster-main > span.zf_kp_s', elem).text(),
+                imdb: $('div.poster-main > span.zf_imdb_s', elem).text(),
+                year: $('div.poster-main > strong > span', elem).text(),
+                title: $('div.info-poster > a > h3', elem).text(),
+                description: $('div.info-poster > p', elem).text()
             })
         })
     }
