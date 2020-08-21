@@ -1,18 +1,29 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import SearchForm from '../components/SearchForm'
 import Poster from '../components/Poster'
-import { Container, Content } from 'native-base'
-
+import { Container, Content, Spinner } from 'native-base'
+import  Scraper from '../scraper'
 
 const Films = () => {
+    const [data,setData] = useState(null)
+    let scraper = new Scraper();
+
+    useEffect(()=>{
+        let data =  scraper.scrapeMainPage()
+        setData(data)
+    })
+
     return (
         <Container>
-            <SearchForm/>
-            <Content>
-                <Poster/>
-                <Poster/>
-                <Poster/>
-            </Content>
+            <SearchForm />
+            { data ?
+                <Content>
+                    <Poster />
+                    <Poster />
+                    <Poster />
+                </Content> :
+                <Spinner style={{flex:1, alignSelf:'center'}} color='blue'/>
+            }
         </Container>
     )
 }
