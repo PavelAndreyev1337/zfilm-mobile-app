@@ -1,11 +1,29 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Image, StyleSheet, View } from 'react-native'
 import { Card, CardItem, Icon, Body, Badge, H1, H3 } from 'native-base'
+import Scraper from '../scraper'
+import {WebView} from 'react-native-webview'
 
 const Poster = ({name}) => {
+    const scraper = new Scraper()
+    const [videoPlayersUrls, setVideoPlayersUrls] = useState(['black'])
+    const [titleColor, setTitleColor] = useState()
     const kp = name.kp
     const imdb= name.imdb
+
+    async function handlePress () {
+        if (videoPlayersUrls.length > 0){
+            setVideoPlayersUrls([])
+            setTitleColor('black')
+        } else{
+            await scraper.scrapeVideoPlayerUrls(name.url)
+            setVideoPlayersUrls(scraper.videoPlayersUrls)
+            setTitleColor('red')
+        }
+    }
+
     return (
+        <View>
         <Card style={{marginTop: 30}}>
             <CardItem style={styles.cardItemSize} cardBody>
                 <Image resizeMode="contain" style={styles.resizableImage} source={{ uri: name.imgUrl }} />
@@ -40,10 +58,21 @@ const Poster = ({name}) => {
             </CardItem>
             <CardItem header bordered>
                 <Body>
-                    <H1 style={{alignSelf:"center"}}>{name.title}</H1>
+                    <H1 style={{alignSelf:"center", color: titleColor}} onPress={handlePress}>{name.title}</H1>
                 </Body>
             </CardItem>
         </Card>
+        { videoPlayersUrls.length > 0 &&
+            <WebView  
+                originWhitelist={['*']} 
+                javaScriptEnabled={true} 
+                domStorageEnabled={true}  
+                useWebKit={true}  
+                startInLoadingState={true} 
+                style={{width:'100%',height:300}} 
+                source={{uri: videoPlayersUrls[0] }}/>
+        }
+        </View>
     )
 }
 
