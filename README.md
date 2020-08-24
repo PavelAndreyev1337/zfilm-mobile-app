@@ -1,4 +1,4 @@
-#  <img src='./docs/cinema.png' style="height: 50px;"/> Android app for zFilm-HD
+#  <img src='./docs/cinema.png'/> Android app for zFilm-HD
 
 [![GitHub issues](https://img.shields.io/github/issues/PavelAndreyev1337/zfilm-mobile-app)](https://github.com/PavelAndreyev1337/zfilm-mobile-app/issues)
 [![GitHub forks](https://img.shields.io/github/forks/PavelAndreyev1337/zfilm-mobile-app)](https://github.com/PavelAndreyev1337/zfilm-mobile-app/network)
