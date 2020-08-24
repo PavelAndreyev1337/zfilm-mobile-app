@@ -18,7 +18,7 @@ const AppHeader = ({isMain, onTransition}) => {
                 </Left>
             }
             <Body style={{flexDirection:'row'}}>
-                <Thumbnail style={{marginRight: 8}} small source={popcornIcon}/>
+                <Thumbnail square style={{marginRight: 8}} small source={popcornIcon}/>
                 <Title style={{alignSelf:"center"}}>ZFilm</Title>
             </Body>
             <Right/>

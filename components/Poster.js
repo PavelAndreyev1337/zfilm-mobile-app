@@ -1,16 +1,16 @@
 import React, {useState} from 'react'
 import { Image, StyleSheet, View } from 'react-native'
-import { Card, CardItem, Icon, Body, Badge, H1, H3 } from 'native-base'
+import { Card, CardItem, Icon, Body, Badge, H2, H3 } from 'native-base'
 import scraper from '../scraper'
 import {WebView} from 'react-native-webview'
 
 const Poster = ({name}) => {
-    const [videoPlayersUrls, setVideoPlayersUrls] = useState([])
+    const [videoPlayersUrls, setVideoPlayersUrls] = useState(null)
     const [titleColor, setTitleColor] = useState('black')
 
     async function handlePress () {
-        if (videoPlayersUrls.length > 0){
-            setVideoPlayersUrls([])
+        if (videoPlayersUrls!==null && videoPlayersUrls.length >= 0){
+            setVideoPlayersUrls(null)
             setTitleColor('black')
         } else{
             let videoPlayersUrls=await scraper.scrapeVideoPlayersUrls(name.url)
@@ -55,16 +55,19 @@ const Poster = ({name}) => {
             </CardItem>
             <CardItem header bordered>
                 <Body>
-                    <H1 style={{alignSelf:"center", color: titleColor}} onPress={handlePress}>{name.title}</H1>
+                    <H2 style={{color: titleColor, textAlign:"center",alignSelf:"center"}} onPress={handlePress}>{name.title}</H2>
                 </Body>
             </CardItem>
         </Card>
-        { videoPlayersUrls.length > 0 &&
+        { videoPlayersUrls!==null && videoPlayersUrls.length > 0 &&
             <WebView  
                 originWhitelist={['*']} 
                 allowsFullscreenVideo={true}
                 style={{width:'100%',height:300}} 
                 source={{uri: videoPlayersUrls[0] }}/>
+        } 
+        { videoPlayersUrls!==null && videoPlayersUrls.length === 0 &&
+            <H3 style={{margin:20, textAlign:"center", color:"#e3d922"}}>Не могу загрузить плеер...⏳</H3>
         }
         </View>
     )
@@ -76,7 +79,7 @@ const styles = StyleSheet.create({
         margin: 5
     },
     cardItemSize: {
-        height: 600
+        height: 495
     },
     resizableImage: {
         position: 'absolute',

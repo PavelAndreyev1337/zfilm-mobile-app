@@ -42,7 +42,7 @@ const Films = () => {
             }
             {data !==null && data.length===0 && 
                 <View style={styles.alignView}>
-                    <H3 style={{flex:1,alignSelf:"center",color:"red", fontWeight:"bold"}}>Ошибка загрузки (поиска) 😫</H3>
+                    {isMain ? <H3 style={styles.errorMessage}>Ошибка загрузки 😫</H3> :<H3 style={styles.errorMessage}>Ничего не найдено 🔎 </H3>}
                 </View>
             }
             </Content>
@@ -55,6 +55,12 @@ const styles = StyleSheet.create({
         flex:1,
         marginTop:170,
         justifyContent: 'center'
+    },
+    errorMessage:{
+        flex:1,
+        alignSelf:"center",
+        color:"red", 
+        fontWeight:"bold"
     }
 })
 

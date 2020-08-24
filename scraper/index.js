@@ -30,12 +30,18 @@ class Scraper {
     }
 
     async scrapeVideoPlayersUrls(url){
-        var videoPlayersUrls=[]
+        let videoPlayersUrls=[]
+        let headers={headers: Object.assign({'Referer': url},this.useAgent)}
         let resp = await axios.get(url, { headers: this.useAgent})
         let urlPlayers = $('div.player-wrapper > iframe',resp.data).attr('src')
-        resp = await axios.get(urlPlayers,{headers: Object.assign({'Referer': url},this.useAgent)})
-        videoPlayersUrls.push($('li[data-name="videocdn"]',resp.data).attr('data-src'))
-        return videoPlayersUrls
+        resp = await axios.get(urlPlayers,headers)
+        let urlVideocdn=$('li[data-name="videocdn"]',resp.data).attr('data-src')
+        try{
+            let {status} = await axios.get(urlVideocdn,headers)
+            if(status===200) videoPlayersUrls.push(urlVideocdn)
+        } finally{
+            return videoPlayersUrls
+        }
     }
 }
 
