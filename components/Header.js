@@ -1,6 +1,6 @@
 import React from 'react'
-import { Header, Left, Button, Icon, Body, Title, Right } from 'native-base'
-import scraper from '../scraper'
+import { Header, Left, Button, Icon, Body, Title, Right,Thumbnail } from 'native-base'
+import popcornIcon from '../assets/popcorn-icon.png'
 
 const AppHeader = ({isMain, onTransition}) => {
 
@@ -12,13 +12,14 @@ const AppHeader = ({isMain, onTransition}) => {
         <Header>
             { !isMain &&
                 <Left>
-                    <Button transparent>
-                        <Icon onPress={handlePress} name="arrow-back" />
+                    <Button onPress={handlePress} transparent>
+                        <Icon name="arrow-back" />
                     </Button>
                 </Left>
             }
-            <Body>
-                <Title>ZFilm</Title>
+            <Body style={{flexDirection:'row'}}>
+                <Thumbnail style={{marginRight: 8}} small source={popcornIcon}/>
+                <Title style={{alignSelf:"center"}}>ZFilm</Title>
             </Body>
             <Right/>
         </Header>
