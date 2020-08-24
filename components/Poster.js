@@ -1,23 +1,20 @@
 import React, {useState} from 'react'
 import { Image, StyleSheet, View } from 'react-native'
 import { Card, CardItem, Icon, Body, Badge, H1, H3 } from 'native-base'
-import Scraper from '../scraper'
+import scraper from '../scraper'
 import {WebView} from 'react-native-webview'
 
 const Poster = ({name}) => {
-    const scraper = new Scraper()
-    const [videoPlayersUrls, setVideoPlayersUrls] = useState(['black'])
-    const [titleColor, setTitleColor] = useState()
-    const kp = name.kp
-    const imdb= name.imdb
+    const [videoPlayersUrls, setVideoPlayersUrls] = useState([])
+    const [titleColor, setTitleColor] = useState('black')
 
     async function handlePress () {
         if (videoPlayersUrls.length > 0){
             setVideoPlayersUrls([])
             setTitleColor('black')
         } else{
-            await scraper.scrapeVideoPlayerUrls(name.url)
-            setVideoPlayersUrls(scraper.videoPlayersUrls)
+            let videoPlayersUrls=await scraper.scrapeVideoPlayersUrls(name.url)
+            setVideoPlayersUrls(videoPlayersUrls)
             setTitleColor('red')
         }
     }
@@ -33,17 +30,17 @@ const Poster = ({name}) => {
                                 <H3 style={{color:'#de5d62', margin: 5, fontWeight: 'bold'}}>{name.voice}</H3>
                             </Badge>
                             <View>
-                                { imdb !== '' &&
+                                { name.imdb !== '' &&
                                     <Badge style={styles.whiteBadge}>
                                         <Icon name="star">
                                             <H3>{name.imdb}</H3>
                                         </Icon>
                                     </Badge>
                                 }
-                                { kp !== '' &&
+                                { name.kp !== '' &&
                                     <Badge style={styles.whiteBadge}>
                                         <Icon name="star">
-                                            <H3>{kp}</H3>
+                                            <H3>{name.kp}</H3>
                                         </Icon>
                                     </Badge>
                                 }
@@ -65,10 +62,7 @@ const Poster = ({name}) => {
         { videoPlayersUrls.length > 0 &&
             <WebView  
                 originWhitelist={['*']} 
-                javaScriptEnabled={true} 
-                domStorageEnabled={true}  
-                useWebKit={true}  
-                startInLoadingState={true} 
+                allowsFullscreenVideo={true}
                 style={{width:'100%',height:300}} 
                 source={{uri: videoPlayersUrls[0] }}/>
         }

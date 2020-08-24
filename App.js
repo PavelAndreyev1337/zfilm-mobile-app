@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Container } from 'native-base'
 import * as Font from 'expo-font'
 import { Ionicons } from '@expo/vector-icons'
-import Header from './components/Header'
 import Films from './screens/Films'
 import { AppLoading } from 'expo'
 
@@ -28,7 +27,6 @@ export default function App() {
 
   return (
     <Container>
-      <Header />
       <Films />
     </Container>
   );

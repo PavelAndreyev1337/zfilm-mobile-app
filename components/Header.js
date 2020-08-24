@@ -1,14 +1,22 @@
 import React from 'react'
 import { Header, Left, Button, Icon, Body, Title, Right } from 'native-base'
+import scraper from '../scraper'
 
-const AppHeader = () => {
+const AppHeader = ({isMain, onTransition}) => {
+
+    function handlePress(){
+        onTransition.fetchData()
+    }
+
     return (
         <Header>
-            <Left>
-                <Button transparent>
-                    <Icon name="arrow-back" />
-                </Button>
-            </Left>
+            { !isMain &&
+                <Left>
+                    <Button transparent>
+                        <Icon onPress={handlePress} name="arrow-back" />
+                    </Button>
+                </Left>
+            }
             <Body>
                 <Title>ZFilm</Title>
             </Body>
