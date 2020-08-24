@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "HelloWorld",
+    "name": "ZFilm",
     "slug": "zfilm-mobile-app",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -19,8 +19,5 @@
     "ios": {
       "supportsTablet": true
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
   }
 }

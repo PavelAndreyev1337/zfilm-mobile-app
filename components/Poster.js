@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import { Image, StyleSheet, View } from 'react-native'
-import { Card, CardItem, Icon, Body, Badge, H2, H3, Spinner } from 'native-base'
+import { Card, CardItem, Icon, Body, Badge, H2, H3 } from 'native-base'
 import scraper from '../scraper'
 import {WebView} from 'react-native-webview'
 

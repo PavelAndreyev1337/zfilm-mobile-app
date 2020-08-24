@@ -1,6 +1,6 @@
 import React from 'react'
 import { Header, Left, Button, Icon, Body, Title, Right,Thumbnail } from 'native-base'
-import popcornIcon from '../assets/popcorn-icon.png'
+import popcornIcon from '../assets/icon.png'
 
 const AppHeader = ({isMain, onTransition}) => {
 

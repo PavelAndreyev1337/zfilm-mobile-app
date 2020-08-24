@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet } from "react-native"
-import { Input, Form, Item, Icon, Button,Text, View } from 'native-base'
+import { Input, Form, Item, Icon, Button,Text } from 'native-base'
 
 const SearchForm = ({isMain, onSubmit }) => {
     const [search, onChangeSearch] = useState('')
