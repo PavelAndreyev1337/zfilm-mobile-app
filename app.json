@@ -20,7 +20,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "sample.pavel",
+      "package": "com.company.ZFilm",
       "versionCode": 1
     }
   }
