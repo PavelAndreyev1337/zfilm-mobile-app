@@ -12,12 +12,12 @@ class Scraper {
         var posters = []
         let url = relativeUrl ? this.baseUrl+relativeUrl : this.baseUrl
         let { data } = await axios.get(url, { headers: this.useAgent })
-        $('ul.content-video > li', data).each((i, elem) => {
+        $('.content-video > li', data).each((i, elem) => {
             if (i==10 && !relativeUrl) return false
             var imgUrl = $('div.poster-main > a > img', elem).attr('src')
             posters.push({
                 url: this.baseUrl + $('div.poster-main > a', elem).attr('href'),
-                imgUrl: imgUrl.startsWith("http") ? imgUrl : this.baseUrl+imgUrl,
+                imgUrl: imgUrl.startsWith("https") ? imgUrl : this.baseUrl+imgUrl,
                 voice: $('div.poster-main > em > span', elem).text(),
                 kp: $('div.poster-main > span.zf_kp_s', elem).text(),
                 imdb: $('div.poster-main > span.zf_imdb_s', elem).text(),
